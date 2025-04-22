@@ -4,6 +4,7 @@ name: 部署文档
 on:
   push:
     branches:
+      # 确保这是你正在使用的分支名称
       - main
 
 permissions:
@@ -24,15 +25,6 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
-
-      - name: 缓存 pnpm 依赖
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.pnpm-store
-            **/node_modules
-            **/node_modules/.pnpm
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: 设置 Node.js
         uses: actions/setup-node@v4
