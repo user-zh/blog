@@ -2,7 +2,8 @@ import {sidebar} from "vuepress-theme-hope";
 import {readdirSync, statSync} from "fs";
 import {join} from "path";
 
-function generateNavbarItems(sidebar, dirPath) {
+// 扫描文件生成侧边栏
+function generateSidebarItems(sidebar, dirPath) {
   const entries = readdirSync(dirPath)
   for (const entry of entries) {
     // 跳过vuepress文件
@@ -27,15 +28,15 @@ function generateNavbarItems(sidebar, dirPath) {
   return sidebar;
 }
 
-export default sidebar(generateNavbarItems({
+export default sidebar(generateSidebarItems({
   "/": [
     "",
     {
-      text:"自我介绍",
+      text: "自我介绍",
       link: "intro.md"
     },
     {
-      text:"样例",
+      text: "样例",
       prefix: "demo/",
       children: "structure",
     }
