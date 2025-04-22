@@ -1,0 +1,16 @@
+// place your custom styles here
+
+// 当主题为 暗色
+[data-theme="dark"] body {
+  background-image: url('/bg.jpg');
+}
+
+// 当主题为 亮色
+[data-theme="light"] body {
+  //background-image: url('/bg.jpg');
+}
+
+// 头像宽度不设置
+.vp-blogger-avatar {
+  width: unset;
+}
