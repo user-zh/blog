@@ -24,6 +24,11 @@ export default hopeTheme({
   footer: "默认页脚",
   displayFooter: false,
 
+  // 页面数据
+
+  // 暂时不显示贡献者（本地用户名是自己写的，不能正确跳转到指定用户github主页）
+  contributors: false,
+
   // 博客相关
   blog: {
     description: "一个随意的程序员",
