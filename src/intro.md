@@ -1,8 +1,8 @@
 ---
-icon: circle-info
+#icon: circle-info
+order: 1
+title: 介绍页
 #cover: /assets/images/cover3.jpg
 ---
 
-# 介绍页
-
-一个随机的程序员
+一个随意的程序员

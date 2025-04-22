@@ -1,6 +1,5 @@
 ---
-title: 博客导航
-index: false
+title: 博客搭建
 #icon: laptop-code
 category:
   - 使用指南

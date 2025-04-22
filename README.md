@@ -11,3 +11,4 @@
 
 - [generateNavbarItems](/src/.vuepress/navbar.ts): 自动生成顶部导航
 - [generateSidebarItems](/src/.vuepress/sidebar.ts): 自动生成侧边导航
+    - 新增子导航展开参数isExpand，相关代码[generateSidebarChildrenItems](/src/.vuepress/sidebar.ts): 自动生成侧边子导航
