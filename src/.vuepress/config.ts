@@ -4,7 +4,7 @@ import theme from "./theme.js";
 export default defineUserConfig({
   base: "/blog/",
   head: [
-    ['link', {rel: 'icon', href: '/blog/images/logo.png'}],
+    ['link', {rel: 'icon', href: '/blog/logo.png'}],
   ],
   lang: "zh-CN",
   title: "今天也随弈的博客",
