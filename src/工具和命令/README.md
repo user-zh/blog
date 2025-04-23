@@ -1,7 +1,7 @@
 ---
-title: 博客搭建
+title: 工具和命令
 dir:
-  order: -1
+  order: 2
 index: false
 #icon: laptop-code
 ---

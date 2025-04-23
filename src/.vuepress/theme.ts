@@ -7,7 +7,11 @@ export default hopeTheme({
   hostname: "https://user-zh.github.io",
   author: {name: "今天也随弈",},
   logo: "/logo.png",
-  repo: "user-zh",
+  // 开启导航栏github链接
+  repo: "user-zh/blog",
+  repoLabel: "GitHub",
+  repoDisplay: true,
+  // 文件扫描路径
   docsDir: "src",
   // 关闭打印按钮
   print: false,
@@ -94,6 +98,11 @@ export default hopeTheme({
   markdown: {
     align: true,
     attrs: true,
+    // 代码高亮
+    highlighter: {
+      type: "shiki",
+    },
+    // 代码块分组
     codeTabs: true,
     component: true,
     demo: true,

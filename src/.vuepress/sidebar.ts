@@ -26,20 +26,8 @@ function generateSidebarItems(sidebar, dirPath, isExpand = false) {
         const sidebarChildren = generateSidebarChildrenItems([], fullPath)
         // 使用文件夹名路由
         sidebar[`/${entry}/`] = sidebarChildren
-        // 插入到 导航页
-        sidebar["/"].push({
-          text: entry,
-          prefix: `${entry}/`,
-          children: sidebarChildren,
-        });
       } else {
         sidebar[`/${entry}/`] = "structure"
-        sidebar["/"].push({
-          text: entry,
-          link: `/${entry}/`,
-          prefix: `/${entry}/`,
-          children: "structure"
-        })
       }
     }
   }
@@ -73,11 +61,5 @@ function generateSidebarChildrenItems(sidebars, dirPath) {
 }
 
 export default sidebar(generateSidebarItems({
-  "/": [
-    "",
-    {
-      text: "自我介绍",
-      link: "intro.md"
-    },
-  ],
+  "/": "structure",
 }, join(__dirname, "../")));

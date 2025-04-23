@@ -18,10 +18,7 @@ function generateNavbarItems(dirPath, basePath = "") {
     // 判断是否为目录
     if (isDirectory) {
       // 使用文件夹名作为文本
-      items.push({
-        text: entry,
-        link: relativePath + "/"
-      });
+      items.push(relativePath + "/");
     }
   }
 
