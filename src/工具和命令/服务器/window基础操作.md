@@ -13,18 +13,18 @@ tags:
 
 ### 复制文件夹
 
-```plain
+```bash
 xcopy 原目录 目标目录 /T/E
 ```
 
 ### 查看端口（最后一个是pid）
 
-```plain
+```bash
 netstat -ano|findstr 9092
 ```
 
 ### 杀死进程
 
-```plain
+```bash
 taskkill -pid [pid] -f
 ```

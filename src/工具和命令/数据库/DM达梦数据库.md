@@ -1,6 +1,6 @@
 ---
 title: 达梦数据库基本操作
-order: 1
+order: 4
 date: 2025-02-09
 isOriginal: false
 category:
@@ -10,17 +10,9 @@ tags:
 ---
 
 ## 文档
-[https://eco.dameng.com/document/dm/zh-cn/sql-dev/practice-func.html##%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0](https://eco.dameng.com/document/dm/zh-cn/sql-dev/practice-func.html##%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0)
+[官方文档](https://eco.dameng.com/document/dm/zh-cn/sql-dev/practice-func.html##%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0)
 
 ## 常用命令
-### 修改数据库字段类型，并数据迁移
-```sql
-alter table 表 add 临时字段 VARBINARY(100);
-update 表 set 需要修改字段=null;
-alter table 表 modify 需要修改字段 VARCHAR2(100);
-update 表 set 需要修改字段=to_char(临时字段),临时字段=null;
-alter table 表 drop column 临时字段;
-```
 
 ### 修改最大连接数
 MAX_SESSIONS 10000 静态 系统允许同时连接的最大数，同时还受到 LICENSE 的限制，取二者中较小的值，有效值范围（1~65000）
@@ -81,21 +73,15 @@ TO_DATE(time,'yyyy-MM-dd HH24:mi:ss')
 大文本类型不允许进行比较，建议使用函数to_char转换后进行比较
 
 ### oracle中DECODE 类似于mysql的if函数
-	比如，有个if语句如下
-
-	if(a==1){//如果a等于1，返回2,否则返回3
-
-	   return 2;
-
-	}else{
-
-	   return 3;
-
-	}
-
-	翻译成DECODE如下
-
-	DECODE(a,1,2,3)
+比如，有个if语句如下等价于DECODE(a,1,2,3)
+```java
+//如果a等于1，返回2,否则返回3
+if(a==1){
+   return 2;
+}else{
+   return 3;
+}
+```
 
 ### 达梦数据库查询时clob字段无法转换的问题
 在数据库连接加上参数clobAsString=true

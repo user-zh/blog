@@ -10,27 +10,29 @@ tags:
 ---
 
 ## 基础命令
+::: code-tabs
+@tab 查看安装的版本
 
-### 查看已经安装的版本
-
-```cmd
+```bash
 nvm list
 ```
 
-### 切换使用指定的版本node
+@tab 切换指定的版本
 
-```cmd
+```bash
 nvm use
 ```
 
-### 安装node22.14.0版本
+@tab 安装指定的版本
 
-```cmd
+```bash
 nvm install 22.14.0
 ```
 
-### 卸载指定的版本
+@tab 卸载指定的版本
 
-```cmd
+```bash
 nvm uninstall 22.14.0
 ```
+
+:::

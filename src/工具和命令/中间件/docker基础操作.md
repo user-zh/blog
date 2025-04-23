@@ -11,129 +11,141 @@ tags:
 
 ## docker基础命令
 
-### 查看镜像列表
+::: code-tabs
 
-```plain
+@tab 查看镜像列表
+
+```shell
 docker images
 ```
 
-### 拉取镜像
+@tab 拉取镜像
 
-```plain
-docker pull <镜像名>
+```shell
+docker pull {镜像名}
 ```
 
-### 删除镜像
+@tab 删除镜像
 
-```plain
-docker rmi <镜像id>
+```shell
+docker rmi {镜像id}
 ```
 
-### 查看容器
+@tab 查看容器
 
--a是历史，没有-a是正在运行
-
-```plain
+```shell
 docker ps -a
 ```
 
-### 停止容器
+@tab 停止容器
 
-```plain
-docker stop <container_id>
+```shell
+docker stop {container_id}
 ```
 
-### 删除容器
+@tab 删除容器
 
-```plain
-docker rm <container_id>
+```shell
+docker rm {container_id}
 ```
 
-### 进入容器目录
+@tab 进入容器目录
 
-```plain
-docker exec -it <容器名> /bin/bash
+```shell
+docker exec -it {容器名} /bin/bash
 ```
 
-### 退出容器
+@tab 退出容器
 
-```plain
+```shell
 exit
 ```
 
+:::
+
 ## 服务基础命令
 
-### 设置开机启动
+::: code-tabs
 
-```plain
+@tab 设置开机启动
+
+```shell
 systemctl enable docker
 ```
 
-### 取消开机自启
+@tab 取消开机自启
 
-```plain
+```shell
 systemctl disable docker
 ```
 
-### 启动docker服务
+@tab 启动docker服务
 
-```plain
+```shell
 systemctl start docker
 ```
 
-### 停止docker服务
+@tab 停止docker服务
 
-```plain
+```shell
 systemctl stop docker
 ```
 
-### 重启docker服务
+@tab 重启docker服务
 
-```plain
+```shell
 systemctl restart docker
 ```
 
-### 查看状态
+@tab 查看状态
 
-```plain
+```shell
 systemctl status docker
 ```
 
+:::
+
 ## 配置镜像源
 
-### 修改/etc/docker/daemon.json
+::: code-tabs
+@tab 修改/etc/docker/daemon.json
 
-```plain
+```yaml
 {
-  "registry-mirrors": [" https://registry.docker-cn.com"]
+  "registry-mirrors": [ " https://registry.docker-cn.com" ]
 }
 ```
 
-### 重启服务
+@tab 重启服务
 
-```plain
+```shell
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
+:::
+
 ## 配置docker服务开启tcp
 
-### 编辑docker.service
+::: code-tabs
 
-```plain
+@tab 编辑docker.service
+
+```shell
 vim /usr/lib/systemd/system/docker.service
 ```
 
-### 修改ExecStart
+@tab 修改ExecStart
 
-```plain
+```
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
 ```
 
-### 重启服务
+@tab 重启服务
 
-```plain
+```shell
 systemctl daemon-reload
 systemctl restart docker
 ```
 
+:::

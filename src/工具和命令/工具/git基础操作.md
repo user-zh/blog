@@ -11,112 +11,247 @@ tags:
 
 ## 初始化操作
 
-### 设置全局用户名
+::: code-tabs
 
-```Git
+@tab 设置用户名
+
+```bash
 git config --global user.name {your_name}
 ```
 
-### 设置全局邮箱
+@tab 设置邮箱
 
-```Git
+```bash
 git config --global user.email {your_email}
 ```
 
-### 查看配置
+@tab 查看配置
 
-```Git
+```bash
 git config --list
 ```
 
-### 生成ssh
+@tab 生成ssh
 
 这个公钥需要放到github管理平台上管理，其中rsa是id号可以随意取
 
-```Git
+```bash
 ssh-keygen -t rsa
 ```
 
-### 查看ssh
+@tab 查看ssh
 
-```Git
+```bash
 cat ~/.ssh/id_rsa.pub
 ```
 
-### 连接测试
+@tab 连接测试
 
-```Git
+```bash
 ssh -T git@github.com
 ssh -T git@gitee.com
 ```
 
+:::
+
 ## 基础操作
 
-### 拉去远程仓库的代码(clone)
+### 拉取远程仓库的代码
 
-```Git
-git clone {project_ssh}
+::: code-tabs
+
+@tab 克隆(clone)
+
+```bash
+git clone <项目ssh>
 ```
 
-### 初始化仓库
+@tab 查看远程仓库信息
 
-```Git
-git init
-```
-
-### 连接远程仓库(remote)
-
-拉取远程仓库代码
-
-```Git
-git remote add origin {project_ssh}
-```
-
-查看远程分支
-
-```Git
+```bash
 git remote -v
 ```
 
-删除远程分支
+@tab 同步远程仓库分支(pull)
 
-```Git
-git remote rm origin
+```bash
+git pull origin <分支名>
 ```
 
-### 同步远程仓库到本地(pull)
+@tab 拉取代码(fetch)
 
-```Git
-git pull origin master
+```bash
+git fetch origin
 ```
 
-### 添加要上传的文件(add)
+:::
 
-```Git
+### 本地初始化连接
+
+::: code-tabs
+
+@tab 初始化
+
+```bash
+git init
+```
+
+@tab 连接仓库(remote)
+
+```bash
+git remote add origin <项目ssh>
+```
+
+:::
+
+### 分支操作
+
+合并（更适合团队分支）和基变（更适合个人）如果发生冲突，最好手动解决冲突(调整冲突文件并提交)
+
+::: code-tabs
+
+@tab 查看分支
+
+```bash
+git branch -a
+```
+
+@tab 新建分支
+
+```bash
+git branch <分支名>          # 创建分支但不切换
+git checkout -b <分支名>    # 创建并切换到新分支（旧版Git）
+git switch -c <分支名>      # 创建并切换到新分支（Git 2.23+推荐）
+```
+
+@tab 切换分支
+
+```bash
+git checkout <分支名>       # 切换到指定分支（旧版Git）
+git switch <分支名>        # 切换到指定分支（Git 2.23+推荐）
+```
+
+@tab 合并分支(merge)
+
+```bash
+git checkout main          # 切换到主分支
+git merge <分支名>        # 合并指定分支到当前分支
+```
+
+@tab 变基操作(rebase)
+```bash
+git checkout feature      # 切换到特性分支
+git rebase main          # 将特性分支变基到主分支
+```
+
+@tab 删除分支
+
+```bash
+git remote rm origin <分支名>
+```
+
+:::
+
+### 提交文件
+
+::: code-tabs
+
+@tab 添加文件(add)
+
+```bash
 git add .
 ```
 
-### 添加注释(commit)
+@tab 添加注释(commit)
 
-```Git
+```bash
 git commit -m '你的注释'
 ```
 
-### 推送(push)
+@tab 推送(push)
 
-```Git
-git push origin master
+```bash
+git push origin <分支名>
 ```
 
-### 查看仓库状态
+:::
 
-```Git
+### 查看相关日志
+
+log操作可以获取对应提交的commit-hash
+
+::: code-tabs
+
+@tab 查看日志
+
+```bash
+git log
+```
+
+@tab 查看仓库状态
+
+```bash
 git status
 ```
 
-## 工作中用到
+:::
 
-### 注释格式
+### 撤销上传文件
+
+已提交但未推送
+
+- commit-hash可以用 HEAD~1 替代表示上一次
+- mixed：撤销包含add
+- <span style="color:red">hard:撤销并舍弃版本号之后提交，慎重使用</span>
+
+::: code-tabs
+
+@tab 撤销提交
+
+```bash
+git reset --soft <commit-hash>
+```
+
+@tab 撤销提交(mixed)
+
+```bash
+git reset --mixed <commit-hash>
+```
+
+@tab 撤销提交(hard)
+
+```bash
+git reset --hard <commit-hash>
+```
+
+@tab 移除指定文件
+
+```bash
+git rm --cached <文件名>
+git commit --amend
+```
+
+@tab 完全删除指定文件
+
+```bash
+git rm <文件名>
+git commit --amend
+```
+
+:::
+
+已经推送
+
+- 上述提交命令指向同步操作即可
+- 如果使用hard撤销需要标记强制，后缀加上 --force-with-lease（更安全） 或者 -f 或者 --force
+
+```bash
+git push
+```
+
+## 备注说明
+
+### 注释格式（推荐）
 
 type（提交类型）：用于说明提交的性质，常见的类型有以下几种：
 
@@ -138,12 +273,4 @@ footer（可选）：可以用于添加一些关联的问题编号、合并请�
 {type}:{subject}
 {body}
 {footer}
-```
-
-### 误上传文件
-
-```Git
-git rm --cached {文件}
-git commit --amend
-git push --force
 ```

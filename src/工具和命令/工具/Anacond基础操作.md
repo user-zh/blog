@@ -15,43 +15,34 @@ tags:
 
 ## 基础操作
 
-### 清理缓存
+::: code-tabs
 
-```cmd
+@tab 清理缓存
+
+```bash
 conda clean -a
 ```
 
-### 查看已创建的虚拟环境
+@tab 查看已创建的虚拟环境
 
-```cmd
+```bash
 conda env list
-```
-
-```cmd
 conda info
 ```
 
-### 创建激活删除虚拟环境
+@tab 创建激活删除虚拟环境
 
-```cmd
+```bash
 conda create -n {env_name} python=X.X
-```
-
-```cmd
 conda activate {env_name}
-```
-
-```cmd
 conda remove -n {env_name} --all
 ```
 
-### 包的安装和删除
+@tab 包的安装和删除
 
-```cmd
+```bash
 conda install {package}
-```
-
-```cmd
 conda remove {package}
 ```
 
+:::

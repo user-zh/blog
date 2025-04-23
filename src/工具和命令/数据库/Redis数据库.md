@@ -1,6 +1,6 @@
 ---
 title: Redis数据库基本操作
-order: 1
+order: 2
 date: 2025-02-09
 isOriginal: false
 star: true
@@ -12,8 +12,7 @@ tags:
 
 ## 查看信息
 
-> 可以查看最近fork耗时（latest_fork_usec，微秒）
->
+可以查看最近fork耗时（latest_fork_usec，微秒）
 
 ```powershell
 info
@@ -31,8 +30,7 @@ redis-cli -h 127.0.0.1 -p 6379 --latency-history -i 1
 
 ## 开启慢日志
 
-> 尽量不使用复杂度过高命令（数据处理放在客户端），每次返回数据尽可能少（推荐300以下）
->
+尽量不使用复杂度过高命令（数据处理放在客户端），每次返回数据尽可能少（推荐300以下）
 
 ```powershell
 ## 命令执行耗时超过 5 毫秒，记录慢日志
@@ -43,8 +41,7 @@ CONFIG SET slowlog-max-len 500
 
 ## 查看bigkey（尽可能避免bigkey写入）
 
-> 当你发现都是 SET / DEL 这种简单命令出现在慢日志中，那么你就要怀疑你的实例否写入了 bigkey。
->
+当你发现都是 SET / DEL 这种简单命令出现在慢日志中，那么你就要怀疑你的实例否写入了 bigkey。
 
 ```powershell
 redis-cli -h 127.0.0.1 -p 6379 --bigkeys -i 0.01
@@ -79,8 +76,7 @@ redis-cli -h 127.0.0.1 -p 6379 --bigkeys -i 0.01
 
 ## 内存上限
 
-> 建议占用内存15%-30%（10g以下）
->
+建议占用内存15%-30%（10g以下）
 
 ```powershell
 CONFIG SET maxmemory 4gb
@@ -107,18 +103,15 @@ CONFIG SET maxmemory-policy volatile-lru
 
 ## 关闭内存大页
 
-> **主进程在拷贝内存数据时，这个阶段就涉及到新内存的申请，如果此时操作系统开启了内存大页，那么在此期间，客户端即便只修改 10B
-> 的数据，Redis 在申请内存时也会以 2MB 为单位向操作系统申请，申请内存的耗时变长，进而导致每个写请求的延迟增加，影响到 Redis
-> 性能
-**。
->
+**主进程在拷贝内存数据时，这个阶段就涉及到新内存的申请，如果此时操作系统开启了内存大页，那么在此期间，客户端即便只修改 10B
+的数据，Redis 在申请内存时也会以 2MB 为单位向操作系统申请，申请内存的耗时变长，进而导致每个写请求的延迟增加，影响到 Redis
+性能**。
 
 ```powershell
 cat /sys/kernel/mm/transparent_hugepage/enabled
 ```
 
-> 如果输出选项是 always，就表示目前开启了内存大页机制
->
+如果输出选项是 always，就表示目前开启了内存大页机制
 
 ```powershell
  echo never > /sys/kernel/mm/transparent_hugepage/enabled

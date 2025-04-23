@@ -1,6 +1,6 @@
 ---
 title: Oracle数据库基本操作
-order: 1
+order: 3
 date: 2025-03-24
 isOriginal: false
 category:
